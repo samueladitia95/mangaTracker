@@ -4,10 +4,19 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Manga List</title>
+		<link rel="stylesheet" href="/assets/style.css" type="text/css">
 	</head>
 	<body>
 		<div>
+			<img src="<%= profilePic %>" alt="Profile Picture" />
+		</div>
+
+		<div>
 			<h1>Manga List</h1>
+		</div>
+
+		<div>
+			<button><a href="/main/mylist/all">My List</a></button>
 		</div>
 
 		<table>
@@ -32,7 +41,7 @@
 					<td><%= el.artist %></td>
 					<td><%= el.yearPublished %></td>
 					<td><%= el.publicationStatus %></td>
-					<td><a href="/main/users/add/<%= el.id %>">Add</a></td>
+					<td><a href="/main/mylist/add/<%= el.id %>">Add</a></td>
 				</tr>
 				<% }) %>
 			</tbody>

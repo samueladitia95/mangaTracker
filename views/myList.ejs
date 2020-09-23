@@ -13,7 +13,6 @@
 		<table>
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Title</th>
 					<th>Author</th>
 					<th>Artist</th>
@@ -29,18 +28,45 @@
 			<tbody>
 				<% mangas.forEach((el) => { %>
 				<tr>
-					<td><%= el.id %></td>
 					<td><%= el.name %></td>
 					<td><%= el.author %></td>
 					<td><%= el.artist %></td>
 					<td><%= el.yearPublished %></td>
-                    <td><%= el.publicationStatus %></td>
-                    <td><%= el.MangaUser.status %></td>
-                    <td><%= el.MangaUser.chapter %></td>
-                    <td><%= el.MangaUser.volume %></td>
+					<td><%= el.publicationStatus %></td>
+					<td><%= el.MangaUser.status %></td>
+					<td>
+						<%= el.MangaUser.chapter %> |
+						<button>
+							<a
+								href="/main/mylist/addchapter?chapter=<%= el.MangaUser.chapter %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
+								>+</a
+							>
+						</button>
+					</td>
+					<td>
+						<%= el.MangaUser.volume %> |
+						<button>
+							<a
+								href="/main/mylist/addvolume?volume=<%= el.MangaUser.volume %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
+								>+</a
+							>
+						</button>
+					</td>
+					<td>
+						<button>
+							<a
+								href="/main/mylist/delete?MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
+								>Delete</a
+							>
+						</button>
+					</td>
 				</tr>
 				<% }) %>
 			</tbody>
 		</table>
+
+		<div>
+			<a href="/main/mangas">Back</a>
+		</div>
 	</body>
 </html>

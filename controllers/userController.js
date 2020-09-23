@@ -1,7 +1,7 @@
 "use strict";
 
 const { User, MangaUser, Manga } = require("../models");
-const bcrypt = require("bcrypt");
+// const bcrypt = require("bcrypt");
 
 class userController {
 	static addUserGet(req, res) {
@@ -9,14 +9,12 @@ class userController {
 	}
 
 	static addUserPost(req, res, next) {
-		let salt = bcrypt.genSaltSync(10);
-		const password = bcrypt.hashSync(req.body.password, salt);
 		const parameter = {
 			userName: req.body.userName,
-			password: password,
+			password: req.body.password,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
-			profilePic: req.file.path,
+			profilePic: req.file.path.slice(6),
 			isAdmin: false,
 		};
 
@@ -30,7 +28,6 @@ class userController {
 	}
 
 	static myList(req, res) {
-		console.log(req.session.userId);
 		User.findAll({
 			where: { id: req.session.userId },
 			include: Manga,
@@ -40,6 +37,7 @@ class userController {
 					user: data,
 					mangas: data[0].Mangas,
 				});
+				res.send(data);
 			})
 			.catch((err) => {
 				res.send(err);
@@ -65,7 +63,51 @@ class userController {
 			volume: req.body.volume,
 		})
 			.then(() => {
-				res.redirect("/main/users/mylist");
+				res.redirect("/main/mylist/all");
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+
+	static deleteOneFromMyList(req, res) {
+		MangaUser.destroy({
+			where: { MangaId: req.query.MangaId, UserId: req.query.UserId },
+		})
+			.then(() => {
+				res.redirect("/main/mylist/all");
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+
+	static addChapter(req, res) {
+		let newChapter = Number(req.query.chapter);
+		MangaUser.update(
+			{
+				chapter: ++newChapter,
+			},
+			{ where: { MangaId: req.query.MangaId, UserId: req.query.UserId } },
+		)
+			.then(() => {
+				res.redirect("/main/mylist/all");
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+
+	static addVolume(req, res) {
+		let newVolume = Number(req.query.volume);
+		MangaUser.update(
+			{
+				volume: ++newVolume,
+			},
+			{ where: { MangaId: req.query.MangaId, UserId: req.query.UserId } },
+		)
+			.then(() => {
+				res.redirect("/main/mylist/all");
 			})
 			.catch((err) => {
 				res.send(err);

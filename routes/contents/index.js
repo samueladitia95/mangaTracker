@@ -2,7 +2,7 @@
 
 const indexContent = require("express").Router();
 const mangas = require("./manga");
-const users = require("./user");
+const myList = require("./myList");
 
 indexContent.use((req, res, next) => {
 	if (!req.session.isLogin) {
@@ -12,6 +12,6 @@ indexContent.use((req, res, next) => {
 });
 
 indexContent.use("/mangas", mangas);
-indexContent.use("/users", users);
+indexContent.use("/mylist", myList);
 
 module.exports = indexContent;
