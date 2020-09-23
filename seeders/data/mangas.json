@@ -1,0 +1,72 @@
+[
+	{
+		"name": "JoJo's Bizarre Adventure",
+		"author": "Araki Hirohiko",
+		"artist": "Araki Hirohiko",
+		"yearPublished": 1987,
+		"publicationStatus": "Ongoing"
+	},
+	{
+		"name": "Haikyuu!!",
+		"author": "Furudate Haruichi",
+		"artist": "Furudate Haruichi",
+		"yearPublished": 2012,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Grand Blue",
+		"author": "Inoue Kenji",
+		"artist": "Yoshioka Kimitake",
+		"yearPublished": 2014,
+		"publicationStatus": "Ongoing"
+	},
+	{
+		"name": "Youjo Senki ",
+		"author": "Carlo Zen",
+		"artist": "Toujou Chika",
+		"yearPublished": 2016,
+		"publicationStatus": "Ongoing"
+	},
+	{
+		"name": "Koe no Katachi ",
+		"author": "Ooima Yoshitoki",
+		"artist": "Ooima Yoshitoki",
+		"yearPublished": 2013,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Fullmetal Alchemist",
+		"author": "Arakawa Hiromu",
+		"artist": "Arakawa Hiromu",
+		"yearPublished": 2001,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Gin no Saji",
+		"author": "Arakawa Hiromu",
+		"artist": "Arakawa Hiromu",
+		"yearPublished": 2011,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Spirit Circle",
+		"author": "Mizukami Satoshi",
+		"artist": "Mizukami Satoshi",
+		"yearPublished": 2012,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Helck",
+		"author": "Nanao Nanaki",
+		"artist": "Nanao Nanaki",
+		"yearPublished": 2014,
+		"publicationStatus": "Completed"
+	},
+	{
+		"name": "Jibaku Shounen Hanako-kun",
+		"author": "Aida Iro",
+		"artist": "Aida Iro",
+		"yearPublished": 2014,
+		"publicationStatus": "Ongoing"
+	}
+]

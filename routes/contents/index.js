@@ -1,6 +1,8 @@
 "use strict";
 
 const indexContent = require("express").Router();
+const mangas = require("./manga");
+const users = require("./user");
 
 indexContent.use((req, res, next) => {
 	if (!req.session.isLogin) {
@@ -9,6 +11,7 @@ indexContent.use((req, res, next) => {
 	next();
 });
 
-indexContent("/");
+indexContent.use("/mangas", mangas);
+indexContent.use("/users", users);
 
 module.exports = indexContent;

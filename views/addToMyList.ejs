@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Add To My List</title>
+	</head>
+	<body>
+		<div>
+			<h1>Add To My List</h1>
+			<h2><%= manga.name %></h2>
+		</div>
+
+		<div>
+			<form action="/main/users/add/<%= manga.id %>" method="post">
+				<div>
+					<label for="status"></label>
+					<select name="status">
+						<option value="Ongoing">Reading</option>
+						<option value="Completed">Completed</option>
+						<option value="Hiatus">Wish-List</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="chapter">Chapter</label>
+					<input type="number" name="chapter" />
+				</div>
+				<div>
+					<label for="volume">Volume</label>
+					<input type="number" name="volume" />
+				</div>
+				<button type="submit">Save</button>
+			</form>
+		</div>
+	</body>
+</html>

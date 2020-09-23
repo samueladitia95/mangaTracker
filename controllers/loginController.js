@@ -14,11 +14,11 @@ class loginController {
 		})
 			.then((data) => {
 				if (bcrypt.compareSync(req.body.password, data[0].password)) {
-                    console.log("hahaha")
 					req.session.isLogin = true;
 					req.session.userName = data[0].userName;
+					req.session.userId = data[0].id;
 				}
-				res.send(req.session)
+				res.redirect("/main/mangas");
 			})
 			.catch((err) => {
 				res.send(err);

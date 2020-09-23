@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Manga List</title>
+	</head>
+	<body>
+		<div>
+			<h1>Manga List</h1>
+		</div>
+
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Title</th>
+					<th>Author</th>
+					<th>Artist</th>
+					<th>Year Published</th>
+					<th>Publication Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% mangas.forEach((el) => { %>
+				<tr>
+					<td><%= el.id %></td>
+					<td><%= el.name %></td>
+					<td><%= el.author %></td>
+					<td><%= el.artist %></td>
+					<td><%= el.yearPublished %></td>
+					<td><%= el.publicationStatus %></td>
+					<td><a href="/main/users/add/<%= el.id %>">Add</a></td>
+				</tr>
+				<% }) %>
+			</tbody>
+		</table>
+	</body>
+</html>
