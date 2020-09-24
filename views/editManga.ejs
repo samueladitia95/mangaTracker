@@ -13,31 +13,36 @@
 		<form action="/main/mangas/edit/<%= manga.id %>" method="post">
 			<div>
 				<label for="name">Title</label>
-				<input type="text" name="name" value="<%= manga.name %>"/>
+				<input type="text" name="name" value="<%= manga.name %>" />
 			</div>
 
 			<div>
 				<label for="author">Author</label>
-				<input type="text" name="author" value="<%= manga.author %>"/>
+				<input type="text" name="author" value="<%= manga.author %>" />
 			</div>
 
 			<div>
 				<label for="artist">Artist</label>
-				<input type="text" name="artist" value="<%= manga.artist %>"/>
+				<input type="text" name="artist" value="<%= manga.artist %>" />
 			</div>
 
 			<div>
 				<label for="yearPublished">Year Published</label>
-				<input type="number" name="yearPublished" value="<%= manga.yearPublished %>"/>
+				<input type="number" name="yearPublished" value="<%= manga.yearPublished %>" />
 			</div>
 
 			<div>
 				<p>Publication Status</p>
-				<input type="radio" id="Ongoing" name="publicationStatus" value="Ongoing" <%= (manga.publicationStatus === "Ongoing") ? "checked" : ""%>/>
+				<input type="radio" id="Ongoing" name="publicationStatus" value="Ongoing" <%=
+				checked(manga.publicationStatus, "Ongoing") %>/>
 				<label for="Ongoing">Ongoing</label><br />
-				<input type="radio" id="Completed" name="publicationStatus" value="Completed" <%= (manga.publicationStatus === "Completed") ? "checked" : ""%>/>
+
+				<input type="radio" id="Completed" name="publicationStatus" value="Completed" <%=
+				checked(manga.publicationStatus, "Completed")%>/>
 				<label for="Completed">Completed</label><br />
-				<input type="radio" id="Hiatus" name="publicationStatus" value="Hiatus" <%= (manga.publicationStatus === "Hiatus") ? "checked" : ""%>/>
+
+				<input type="radio" id="Hiatus" name="publicationStatus" value="Hiatus" <%=
+				checked(manga.publicationStatus, "Hiatus") %>/>
 				<label for="Hiatus">Hiatus</label>
 			</div>
 

@@ -23,4 +23,6 @@ mangas.post("/edit/:id", isAdminCheck, MangaController.editMangaPost);
 mangas.get("/comment/:id", MangaController.displayComments);
 mangas.post("/addcomment", MangaController.addComment);
 
+mangas.get("/hot", MangaController.findHotMangas)
+
 module.exports = mangas;

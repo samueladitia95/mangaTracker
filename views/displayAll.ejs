@@ -8,7 +8,9 @@
 	</head>
 	<body>
 		<div>
-			<img src="<%= session.profilePicPath %>" alt="Profile Picture" style="width: 20px" />
+			<img src="<%= session.profilePicPath %>" alt="Profile Picture" style="width: 40px" />
+			<p>Hey <%= session.fullName %></p>
+			<p><a href="/login/out">Log Out</a></p>
 		</div>
 
 		<div>
@@ -23,6 +25,8 @@
 
 		<div>
 			<button><a href="/main/mylist/all">My List</a></button>
+			<button><a href="/main/mangas/hot">Hot Manga</a></button>
+			<button><a href="/main/mangas">All</a></button>
 		</div>
 
 		<table>
@@ -49,9 +53,9 @@
 					<td><%= el.publicationStatus %></td>
 					<td>
 						<a href="/main/mylist/add/<%= el.id %>">Add</a>
-						<% if (session.isAdmin) { %>
-							| <a href="/main/mangas/delete/<%= el.id %>">Delete</a> |
-							<a href="/main/mangas/edit/<%= el.id %>">Edit</a>
+						<% if (session.isAdmin) { %> |
+						<a href="/main/mangas/delete/<%= el.id %>">Delete</a> |
+						<a href="/main/mangas/edit/<%= el.id %>">Edit</a>
 						<% } %>
 					</td>
 				</tr>

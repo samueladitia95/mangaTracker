@@ -1,8 +1,7 @@
 "use strict";
 
 const { Manga, MangaComment, User } = require("../models");
-const manga = require("../models/manga");
-const user = require("../models/user");
+const checked = require("../helpers/checkedConditional");
 
 class mangaController {
 	static displayAll(req, res) {
@@ -32,7 +31,7 @@ class mangaController {
 	static editMangaGet(req, res) {
 		Manga.findByPk(req.params.id)
 			.then((data) => {
-				res.render("editManga", { manga: data });
+				res.render("editManga", { manga: data, checked });
 			})
 			.catch((err) => {
 				res.send(err);
@@ -62,7 +61,7 @@ class mangaController {
 				res.send(err);
 			});
 	}
-	
+
 	//! Maybe can use Promise.all
 	static displayComments(req, res) {
 		let commentData = null;
@@ -82,7 +81,7 @@ class mangaController {
 					manga: commentData[0],
 					comments: commentData[0].MangaComments || [],
 					userId: req.session.userId,
-					data: data
+					data: data,
 				});
 			})
 			.catch((err) => {
@@ -102,6 +101,12 @@ class mangaController {
 			.catch((err) => {
 				res.send(err);
 			});
+	}
+
+	static findHotMangas(req, res) {
+		Manga.findHot((data) => {
+			res.render("displayAll", { mangas: data, session: req.session });
+		});
 	}
 }
 

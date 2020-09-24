@@ -2,7 +2,7 @@
 
 class indexController {
 	static displayHome(req, res) {
-	        res.render("homePage");
+		res.render("homePage");
 	}
 }
 

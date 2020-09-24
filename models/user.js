@@ -4,17 +4,16 @@ const bcrypt = require("bcrypt");
 
 module.exports = (sequelize, DataTypes) => {
 	class User extends Model {
-		/**
-		 * Helper method for defining associations.
-		 * This method is not a part of Sequelize lifecycle.
-		 * The `models/index` file will call this method automatically.
-		 */
 		static associate(models) {
 			User.belongsToMany(models.Manga, { through: models.MangaUser });
 			User.hasMany(models.MangaComment, {
 				sourceKey: "id",
 				foreignKey: "UserId",
 			});
+		}
+
+		fullName() {
+			return `${this.firstName} ${this.lastName}`;
 		}
 	}
 	User.init(

@@ -37,3 +37,7 @@ form div input {
 	display: block;
 	margin: 0.25em 0;
 }
+
+.commentBox {
+	border: 1px solid #cbcbcb;
+}
