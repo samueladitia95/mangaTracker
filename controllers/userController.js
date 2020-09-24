@@ -15,7 +15,7 @@ class userController {
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
 			profilePic: req.file.path.slice(6),
-			isAdmin: false,
+			isAdmin: req.body.isAdmin === "true" ? true : false,
 		};
 
 		User.create(parameter)
