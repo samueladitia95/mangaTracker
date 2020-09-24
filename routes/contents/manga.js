@@ -10,6 +10,16 @@ const isAdminCheck = (req, res, next) => {
 	next();
 };
 
-mangas.get("/",isAdminCheck, MangaController.displayAll);
+mangas.get("/", MangaController.displayAll);
+
+mangas.get("/add", isAdminCheck, MangaController.addMangaGet);
+mangas.post("/add", isAdminCheck, MangaController.addMangaPost);
+
+mangas.get("/delete/:id", isAdminCheck, MangaController.deleteManga);
+
+mangas.get("/edit/:id", isAdminCheck, MangaController.editMangaGet);
+mangas.post("/edit/:id", isAdminCheck, MangaController.editMangaPost);
+
+
 
 module.exports = mangas;

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Manga</title>
+    <link rel="stylesheet" href="/assets/style.css" type="text/css">
+</head>
+<body>
+    <div>
+        <h1>Add Manga</h1>
+    </div>
+
+    <form action="/main/mangas/add" method="post">
+        <div>
+            <label for="name">Title</label>
+            <input type="text" name="name">
+        </div>
+
+        <div>
+            <label for="author">Author</label>
+            <input type="text" name="author">
+        </div>
+        
+        <div>
+            <label for="artist">Artist</label>
+            <input type="text" name="artist">
+        </div>
+
+        <div>
+            <label for="yearPublished">Year Published</label>
+            <input type="number" name="yearPublished">
+        </div>
+
+        <div>
+            <p>Publication Status</p>
+            <input type="radio" id="Ongoing" name="publicationStatus" value="Ongoing">
+            <label for="Ongoing">Ongoing</label><br>
+            <input type="radio" id="Completed" name="publicationStatus" value="Completed">
+            <label for="Completed">Completed</label><br>
+            <input type="radio" id="Hiatus" name="publicationStatus" value="Hiatus">
+            <label for="Hiatus">Hiatus</label>
+        </div>
+
+        <div>
+            <button type="submit">Save</button>
+        </div>
+    </form>
+
+    <div>
+        <button><a href="/main/mangas">Cancel</a></button>
+    </div>
+</body>
+</html>

@@ -13,4 +13,6 @@ myList.get("/delete", UserController.deleteOneFromMyList);
 myList.get("/addchapter", UserController.addChapter);
 myList.get("/addvolume", UserController.addVolume);
 
+myList.get("/toread", UserController.toRead)
+
 module.exports = myList;

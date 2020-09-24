@@ -37,7 +37,6 @@ class userController {
 					user: data,
 					mangas: data[0].Mangas,
 				});
-				res.send(data);
 			})
 			.catch((err) => {
 				res.send(err);
@@ -103,6 +102,21 @@ class userController {
 		MangaUser.update(
 			{
 				volume: ++newVolume,
+			},
+			{ where: { MangaId: req.query.MangaId, UserId: req.query.UserId } },
+		)
+			.then(() => {
+				res.redirect("/main/mylist/all");
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+
+	static toRead(req, res) {
+		MangaUser.update(
+			{
+				status: "Reading",
 			},
 			{ where: { MangaId: req.query.MangaId, UserId: req.query.UserId } },
 		)

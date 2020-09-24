@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Edit Manga</title>
+	</head>
+	<body>
+		<div>
+			<h1>Edit Manga</h1>
+		</div>
+
+		<form action="/main/mangas/edit/<%= manga.id %>" method="post">
+			<div>
+				<label for="name">Title</label>
+				<input type="text" name="name" value="<%= manga.name %>"/>
+			</div>
+
+			<div>
+				<label for="author">Author</label>
+				<input type="text" name="author" value="<%= manga.author %>"/>
+			</div>
+
+			<div>
+				<label for="artist">Artist</label>
+				<input type="text" name="artist" value="<%= manga.artist %>"/>
+			</div>
+
+			<div>
+				<label for="yearPublished">Year Published</label>
+				<input type="number" name="yearPublished" value="<%= manga.yearPublished %>"/>
+			</div>
+
+			<div>
+				<p>Publication Status</p>
+				<input type="radio" id="Ongoing" name="publicationStatus" value="Ongoing" <%= (manga.publicationStatus === "Ongoing") ? "checked" : ""%>/>
+				<label for="Ongoing">Ongoing</label><br />
+				<input type="radio" id="Completed" name="publicationStatus" value="Completed" <%= (manga.publicationStatus === "Completed") ? "checked" : ""%>/>
+				<label for="Completed">Completed</label><br />
+				<input type="radio" id="Hiatus" name="publicationStatus" value="Hiatus" <%= (manga.publicationStatus === "Hiatus") ? "checked" : ""%>/>
+				<label for="Hiatus">Hiatus</label>
+			</div>
+
+			<div>
+				<button type="submit">Save</button>
+			</div>
+		</form>
+
+		<div>
+			<button><a href="/main/mangas">Cancel</a></button>
+		</div>
+	</body>
+</html>

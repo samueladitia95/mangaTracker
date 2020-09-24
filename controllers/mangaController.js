@@ -6,7 +6,7 @@ class mangaController {
 	static displayAll(req, res) {
 		Manga.findAll()
 			.then((data) => {
-				res.render("displayAll", { mangas: data, profilePic: req.session.profilePicPath });
+				res.render("displayAll", { mangas: data, session: req.session });
 			})
 			.catch((err) => {
 				res.send(err);

@@ -13,7 +13,6 @@ class loginController {
 			where: { userName: req.body.userName },
 		})
 			.then((data) => {
-				console.log(data)
 				if (bcrypt.compareSync(req.body.password, data[0].password)) {
 					req.session.isLogin = true;
 					req.session.userName = data[0].userName;

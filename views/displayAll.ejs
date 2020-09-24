@@ -4,16 +4,22 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Manga List</title>
-		<link rel="stylesheet" href="/assets/style.css" type="text/css">
+		<link rel="stylesheet" href="/assets/style.css" type="text/css" />
 	</head>
 	<body>
 		<div>
-			<img src="<%= profilePic %>" alt="Profile Picture" />
+			<img src="<%= session.profilePicPath %>" alt="Profile Picture" style="width: 20px" />
 		</div>
 
 		<div>
 			<h1>Manga List</h1>
 		</div>
+
+		<% if (session.isAdmin) { %>
+		<div>
+			<button><a href="/main/mangas/add">Add Manga</a></button>
+		</div>
+		<% } %>
 
 		<div>
 			<button><a href="/main/mylist/all">My List</a></button>
@@ -41,7 +47,13 @@
 					<td><%= el.artist %></td>
 					<td><%= el.yearPublished %></td>
 					<td><%= el.publicationStatus %></td>
-					<td><a href="/main/mylist/add/<%= el.id %>">Add</a></td>
+					<td>
+						<a href="/main/mylist/add/<%= el.id %>">Add</a>
+						<% if (session.isAdmin) { %>
+							| <a href="/main/mangas/delete/<%= el.id %>">Delete</a> |
+							<a href="/main/mangas/edit/<%= el.id %>">Edit</a>
+						<% } %>
+					</td>
 				</tr>
 				<% }) %>
 			</tbody>

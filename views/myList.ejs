@@ -4,6 +4,7 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>My List</title>
+		<link rel="stylesheet" href="/assets/style.css" type="text/css">
 	</head>
 	<body>
 		<div>
@@ -33,25 +34,36 @@
 					<td><%= el.artist %></td>
 					<td><%= el.yearPublished %></td>
 					<td><%= el.publicationStatus %></td>
-					<td><%= el.MangaUser.status %></td>
 					<td>
-						<%= el.MangaUser.chapter %> |
-						<button>
-							<a
-								href="/main/mylist/addchapter?chapter=<%= el.MangaUser.chapter %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
-								>+</a
-							>
-						</button>
+						<%= el.MangaUser.status %>
+						<% if (el.MangaUser.status === "Wish-List") { %>
+							| <a href="/main/mylist/toread?&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>">Read</a>
+						<% } %>
 					</td>
-					<td>
-						<%= el.MangaUser.volume %> |
-						<button>
-							<a
-								href="/main/mylist/addvolume?volume=<%= el.MangaUser.volume %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
-								>+</a
-							>
-						</button>
-					</td>
+					<% if (el.MangaUser.status === "Reading") { %>
+						<td>
+							<%= el.MangaUser.chapter %> |
+							<button>
+								<a
+									href="/main/mylist/addchapter?chapter=<%= el.MangaUser.chapter %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
+									>+</a
+								>
+							</button>
+						</td>
+						<td>
+							<%= el.MangaUser.volume %> |
+							<button>
+								<a
+									href="/main/mylist/addvolume?volume=<%= el.MangaUser.volume %>&MangaId=<%= el.MangaUser.MangaId %>&UserId=<%= el.MangaUser.UserId %>"
+									>+</a
+								>
+							</button>
+						</td>
+					<% } else { %>
+						<td>-</td>
+						<td>-</td>
+					<% } %>
+					
 					<td>
 						<button>
 							<a
