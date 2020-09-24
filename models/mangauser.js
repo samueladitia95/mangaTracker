@@ -16,11 +16,28 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			MangaId: DataTypes.INTEGER,
 			UserId: DataTypes.INTEGER,
-			status: DataTypes.STRING,
+			status: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "Status must not be empty"
+					},
+				},
+			},
 			chapter: DataTypes.INTEGER,
 			volume: DataTypes.INTEGER,
 		},
 		{
+			hooks: {
+				beforeCreate: (instance, options) => {
+					if (!instance.chapter) {
+						instance.chapter = 0;
+					}
+					if (!instance.volume) {
+						instance.volume = 0;
+					}
+				},
+			},
 			sequelize,
 			modelName: "MangaUser",
 		},

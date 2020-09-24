@@ -11,6 +11,10 @@
 			<h1>Add Manga</h1>
 		</div>
 
+		<% errors.forEach((err) => { %>
+		<p style="color: red"><%= err %></p>
+		<% }) %>
+
 		<form action="/main/mangas/add" method="post">
 			<div>
 				<label for="name">Title</label>

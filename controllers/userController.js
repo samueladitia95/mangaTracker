@@ -5,7 +5,11 @@ const { User, MangaUser, Manga } = require("../models");
 
 class userController {
 	static addUserGet(req, res) {
-		res.render("registration");
+		let errors = [];
+		if (req.query.err) {
+			errors = req.query.err.split(",");
+		}
+		res.render("registration", { errors });
 	}
 
 	static addUserPost(req, res, next) {
@@ -14,7 +18,7 @@ class userController {
 			password: req.body.password,
 			firstName: req.body.firstName,
 			lastName: req.body.lastName,
-			profilePic: req.file.path.slice(6),
+			profilePic: req.file ? req.file.path.slice(6) : "",
 			isAdmin: req.body.isAdmin === "true" ? true : false,
 		};
 
@@ -23,7 +27,11 @@ class userController {
 				res.redirect("/login");
 			})
 			.catch((err) => {
-				res.send(err);
+				const errMessage = [];
+				err.errors.forEach((el) => {
+					errMessage.push(el.message);
+				});
+				res.redirect(`/registration?err=${errMessage.join(",")}`);
 			});
 	}
 
@@ -44,9 +52,23 @@ class userController {
 	}
 
 	static addToMyListGet(req, res) {
+		let mangaData = null;
 		Manga.findByPk(req.params.id)
 			.then((data) => {
-				res.render("addToMyList", { manga: data });
+				mangaData = data;
+				return MangaUser.findAll({
+					where: {
+						UserId: req.session.userId,
+						MangaId: data.id,
+					},
+				});
+			})
+			.then((data) => {
+				if (data.length) {
+					res.redirect("/main/mangas?err=Manga already added");
+				} else {
+					res.render("addToMyList", { manga: mangaData });
+				}
 			})
 			.catch((err) => {
 				res.render(err);
@@ -58,8 +80,8 @@ class userController {
 			MangaId: req.params.id,
 			UserId: req.session.userId,
 			status: req.body.status,
-			chapter: req.body.chapter,
-			volume: req.body.volume,
+			chapter: req.body.chapter || 0,
+			volume: req.body.volume || 0,
 		})
 			.then(() => {
 				res.redirect("/main/mylist/all");

@@ -31,13 +31,41 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Manga.init(
 		{
-			name: DataTypes.STRING,
-			author: DataTypes.STRING,
+			name: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "Title must not be empty",
+					},
+				},
+			},
+			author: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "Author must not be empty",
+					},
+				},
+			},
 			artist: DataTypes.STRING,
 			yearPublished: DataTypes.INTEGER,
-			publicationStatus: DataTypes.STRING,
+			publicationStatus: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "Publication Status must not be empty",
+					},
+				},
+			},
 		},
 		{
+			hooks: {
+				beforeCreate: (instance, options) => {
+					if (!instance.artist) {
+						instance.artist = instance.author;
+					}
+				},
+			},
 			sequelize,
 			modelName: "Manga",
 		},

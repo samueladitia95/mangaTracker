@@ -17,6 +17,10 @@
 			<h1>Manga List</h1>
 		</div>
 
+		<% errors.forEach((err) => { %>
+		<p style="color: red"><%= err %></p>
+		<% }) %> 
+		
 		<% if (session.isAdmin) { %>
 		<div>
 			<button><a href="/main/mangas/add">Add Manga</a></button>

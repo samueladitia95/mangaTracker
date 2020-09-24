@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
 					notNull: {
 						msg: "Username must not be empty",
 					},
+					notEmpty: {
+						msg: "Username must not be empty",
+					},
 				},
 			},
 			password: {
@@ -34,11 +37,28 @@ module.exports = (sequelize, DataTypes) => {
 					notNull: {
 						msg: "Password must not be empty",
 					},
-					len: [8, 255],
+					len: {
+						args: [8, 255],
+						msg: "Minimum password length must be 8 characters",
+					},
 				},
 			},
-			firstName: DataTypes.STRING,
-			lastName: DataTypes.STRING,
+			firstName: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "First Name must not be empty",
+					},
+				},
+			},
+			lastName: {
+				type: DataTypes.STRING,
+				validate: {
+					notEmpty: {
+						msg: "Last Name must not be empty",
+					},
+				},
+			},
 			profilePic: DataTypes.STRING,
 			isAdmin: {
 				allowNull: false,

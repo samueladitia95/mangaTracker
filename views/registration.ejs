@@ -4,12 +4,16 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Register User</title>
-		<link rel="stylesheet" href="/assets/style.css" type="text/css">
+		<link rel="stylesheet" href="/assets/style.css" type="text/css" />
 	</head>
 	<body>
 		<div>
 			<h1>Register User</h1>
 		</div>
+
+		<% errors.forEach((err) => { %>
+		<p style="color: red"><%= err %></p>
+		<% }) %>
 
 		<form action="/registration" method="post" enctype="multipart/form-data">
 			<div>
@@ -39,13 +43,13 @@
 
 			<div>
 				<label for="isAdmin">Are you an Admin?</label>
-				<input type="checkbox" name="isAdmin" value="true">
+				<input type="checkbox" name="isAdmin" value="true" />
 			</div>
 			<div>
 				<button type="submit">Save</button>
 			</div>
 		</form>
-		<br>
+		<br />
 		<div>
 			<a href="/">Cancel</a>
 		</div>

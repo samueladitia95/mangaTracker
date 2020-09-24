@@ -5,9 +5,13 @@ const checked = require("../helpers/checkedConditional");
 
 class mangaController {
 	static displayAll(req, res) {
+		let errors = [];
+		if (req.query.err) {
+			errors = req.query.err.split(",");
+		}
 		Manga.findAll()
 			.then((data) => {
-				res.render("displayAll", { mangas: data, session: req.session });
+				res.render("displayAll", { mangas: data, session: req.session, errors });
 			})
 			.catch((err) => {
 				res.send(err);
@@ -15,7 +19,11 @@ class mangaController {
 	}
 
 	static addMangaGet(req, res) {
-		res.render("addManga");
+		let errors = [];
+		if (req.query.err) {
+			errors = req.query.err.split(",");
+		}
+		res.render("addManga", { errors });
 	}
 
 	static addMangaPost(req, res) {
@@ -24,14 +32,22 @@ class mangaController {
 				res.redirect("/main/mangas");
 			})
 			.catch((err) => {
-				res.send(err);
+				const errMessage = [];
+				err.errors.forEach((el) => {
+					errMessage.push(el.message);
+				});
+				res.redirect(`/main/mangas/add?err=${errMessage.join(",")}`);
 			});
 	}
 
 	static editMangaGet(req, res) {
+		let errors = [];
+		if (req.query.err) {
+			errors = req.query.err.split(",");
+		}
 		Manga.findByPk(req.params.id)
 			.then((data) => {
-				res.render("editManga", { manga: data, checked });
+				res.render("editManga", { manga: data, checked, errors });
 			})
 			.catch((err) => {
 				res.send(err);
@@ -46,7 +62,11 @@ class mangaController {
 				res.redirect("/main/mangas");
 			})
 			.catch((err) => {
-				res.send(err);
+				const errMessage = [];
+				err.errors.forEach((el) => {
+					errMessage.push(el.message);
+				});
+				res.redirect(`/main/mangas/edit/${req.params.id}?err=${errMessage.join(",")}`);
 			});
 	}
 

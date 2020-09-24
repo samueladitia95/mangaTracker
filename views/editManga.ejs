@@ -10,6 +10,10 @@
 			<h1>Edit Manga</h1>
 		</div>
 
+		<% errors.forEach((err) => { %>
+		<p style="color: red"><%= err %></p>
+		<% }) %>
+
 		<form action="/main/mangas/edit/<%= manga.id %>" method="post">
 			<div>
 				<label for="name">Title</label>
