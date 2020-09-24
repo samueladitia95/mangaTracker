@@ -49,9 +49,14 @@ module.exports = (sequelize, DataTypes) => {
 		{
 			hooks: {
 				beforeCreate: (instance, options) => {
-					console.log(instance);
 					let salt = bcrypt.genSaltSync(10);
 					instance.password = bcrypt.hashSync(instance.password, salt);
+				},
+				beforeBulkCreate: (instances, options) => {
+					instances.forEach((el) => {
+						let salt = bcrypt.genSaltSync(10);
+						el.password = bcrypt.hashSync(el.password, salt);
+					});
 				},
 			},
 			sequelize,

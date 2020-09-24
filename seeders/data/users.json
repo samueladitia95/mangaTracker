@@ -1,0 +1,10 @@
+[
+	{
+		"userName": "admin",
+		"password": "indonesia",
+		"firstName": "admin",
+		"lastname": "admin",
+        "profilePic": "profilePic-1600882000050.png",
+        "isAdmin": true
+	}
+]
