@@ -1,6 +1,8 @@
 "use strict";
 
-const { Manga } = require("../models");
+const { Manga, MangaComment, User } = require("../models");
+const manga = require("../models/manga");
+const user = require("../models/user");
 
 class mangaController {
 	static displayAll(req, res) {
@@ -55,6 +57,47 @@ class mangaController {
 		})
 			.then(() => {
 				res.redirect("/main/mangas");
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+	
+	//! Maybe can use Promise.all
+	static displayComments(req, res) {
+		let commentData = null;
+		Manga.findAll({
+			where: { id: req.params.id },
+			include: MangaComment,
+		})
+			.then((data) => {
+				commentData = data;
+				return MangaComment.findAll({
+					where: { MangaId: data[0].id },
+					include: User,
+				});
+			})
+			.then((data) => {
+				res.render("mangaPage", {
+					manga: commentData[0],
+					comments: commentData[0].MangaComments || [],
+					userId: req.session.userId,
+					data: data
+				});
+			})
+			.catch((err) => {
+				res.send(err);
+			});
+	}
+
+	static addComment(req, res) {
+		MangaComment.create({
+			UserId: req.query.UserId,
+			MangaId: req.query.MangaId,
+			comment: req.body.comment,
+		})
+			.then((data) => {
+				res.redirect(`/main/mangas/comment/${data.MangaId}`);
 			})
 			.catch((err) => {
 				res.send(err);

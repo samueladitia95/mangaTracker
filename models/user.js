@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			User.belongsToMany(models.Manga, { through: models.MangaUser });
+			User.hasMany(models.MangaComment, {
+				sourceKey: "id",
+				foreignKey: "UserId",
+			});
 		}
 	}
 	User.init(

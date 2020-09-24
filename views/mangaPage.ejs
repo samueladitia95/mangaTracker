@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title><%= manga.name %></title>
+	</head>
+	<body>
+		<div>
+			<h1><%= manga.name %></h1>
+			<p>Created By <%= manga.author %></p>
+		</div>
+
+		<div>
+			<h2>Comments</h2>
+			<% comments.forEach((el, i) => { %>
+			<div>
+				<!-- THIS IS A SHITSHOW!!!!! -->
+				<p>By <%= data[Number(i)].User.userName %></p>
+				<p><%= el.comment %></p>
+			</div>
+			<% }) %>
+		</div>
+
+		<div>
+			<form action="/main/mangas/addcomment?MangaId=<%= manga.id %>&UserId=<%= userId %>" method="post">
+				<p>Write Your Comment</p>
+				<input type="text" name="comment" id="comment" /><br />
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+
+		<div>
+			<a href="/main/mangas">Back</a>
+		</div>
+	</body>
+</html>

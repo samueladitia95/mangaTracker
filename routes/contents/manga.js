@@ -20,6 +20,7 @@ mangas.get("/delete/:id", isAdminCheck, MangaController.deleteManga);
 mangas.get("/edit/:id", isAdminCheck, MangaController.editMangaGet);
 mangas.post("/edit/:id", isAdminCheck, MangaController.editMangaPost);
 
-
+mangas.get("/comment/:id", MangaController.displayComments);
+mangas.post("/addcomment", MangaController.addComment);
 
 module.exports = mangas;

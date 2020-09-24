@@ -42,7 +42,7 @@
 				<% mangas.forEach((el) => { %>
 				<tr>
 					<td><%= el.id %></td>
-					<td><%= el.name %></td>
+					<td><a href="/main/mangas/comment/<%= el.id %>"><%= el.name %></a></td>
 					<td><%= el.author %></td>
 					<td><%= el.artist %></td>
 					<td><%= el.yearPublished %></td>
