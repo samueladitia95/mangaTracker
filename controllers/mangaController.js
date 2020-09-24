@@ -125,7 +125,7 @@ class mangaController {
 
 	static findHotMangas(req, res) {
 		Manga.findHot((data) => {
-			res.render("displayAll", { mangas: data, session: req.session });
+			res.render("displayAll", { mangas: data, session: req.session, errors: [] });
 		});
 	}
 }
